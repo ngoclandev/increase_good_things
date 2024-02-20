@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>++iGudThin(s)</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="rules-overlay" class="overlay hidden">
+      <div class="rules">
+        <h2 class="rules-heading">
+          Những đơn vị thời gian có thể dùng ở đây, và cách chúng hiển thị:
+        </h2>
+        <ol class="rules-list">
+          <li>min 👉 min</li>
+          <li>hour 👉 h</li>
+          <li>day 👉 d</li>
+          <li>week 👉 w</li>
+          <li>month 👉 mon</li>
+          <li>year 👉 y</li>
+        </ol>
+
+        <p>Note có thể ít, nhưng phải dài lâu!</p>
+      </div>
+    </div>
+    <button class="btn rules-btn">?</button>
+    <div id="spinner-overlay" class="overlay hidden">
+      <div class="spinner"></div>
+    </div>
+    <div class="app">
+      <header class="header">
+        <!-- <a href="#" class="logo">++iGudThin(s)</a> -->
+        <a class="logo" href="#"
+          ><img
+            src="https://see.fontimg.com/api/renderfont4/la1w/eyJyIjoiZnMiLCJoIjo1MywidyI6MTUwMCwiZnMiOjM1LCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/KytpR3VkVGhpbihzKQ/balonku-regular.png"
+            alt="Cute fonts"
+        /></a>
+      </header>
+      <main class="content">
+        <!-- Info from user -->
+        <form id="form-add" action="" class="form">
+          <div class="form-group add-thing">
+            <label for="good-thing">Làm gì:</label>
+            <input
+              type="text"
+              placeholder="VD: Thiền"
+              id="good-thing"
+              name="good-thing"
+            />
+            <span class="message"></span>
+          </div>
+
+          <div class="form-group add-day">
+            <label for="time-maked">Làm lâu chưa?</label>
+            <input
+              type="text"
+              placeholder="VD: 5 min"
+              id="time-maked"
+              name="time-maked"
+            />
+            <span class="message"></span>
+          </div>
+
+          <div class="form-group add-jump">
+            <label for="jump">Một lần làm bao lâu?</label>
+            <input
+              type="text"
+              placeholder="Không nhập thì được hiểu là 1"
+              id="jump"
+              name="jump"
+            />
+            <span class="message"></span>
+          </div>
+
+          <input class="add btn" type="submit" value="Make it better!" />
+        </form>
+      </main>
+
+      <!-- Info after hit button submit -->
+      <div class="things">
+        <div class="empty-display">
+          <img class="empty-img" src="./img/empty-box.png" alt="" />
+          <h3 class="empty-message">
+            Hổng thấy gì để tăng hết, thêm việc tốt liền thuôi!
+          </h3>
+        </div>
+        <div class="things-container">
+          <h2 class="things-title">Việc đã take note:</h2>
+          <ul class="things-list">
+            <!-- <li class="things-item" draggable="true">
+                <div class="things-info">
+                  <span class="things-order">1.</span>
+                  <span class="things-desc">Meditation</span>
+                </div>
+                <div class="things-maintain">
+                  <button id="things-minus" class="btn things-btn">-</button>
+                  <span class="things-time"
+                    >362<span class="things-unit-time">min</span></span
+                  >
+                  <button id="things-increase" class="btn things-btn">+</button>
+                </div>
+              </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="./library/validator.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
