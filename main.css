@@ -169,7 +169,7 @@ input {
 }
 
 .rules-btn {
-  position: absolute;
+  position: fixed;
   display: flex;
   right: 5%;
   bottom: 5%;
@@ -250,8 +250,6 @@ input {
   max-width: 70%;
 }
 
-.things-list {
-}
 .things-title {
   padding: 4px 8px 12px;
   margin: 0 16px;
@@ -285,8 +283,6 @@ input {
   margin-top: 4px;
 }
 
-.things-desc {
-}
 .things-maintain {
   display: flex;
   flex-wrap: nowrap;
