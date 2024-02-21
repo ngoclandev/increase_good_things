@@ -170,9 +170,10 @@ input {
 
 .rules-btn {
   position: fixed;
+  z-index: 2;
   display: flex;
   right: 5%;
-  bottom: 5%;
+  top: 5%;
   font-size: 22px;
   justify-content: center;
   align-items: center;
@@ -312,12 +313,11 @@ input {
   position: absolute;
   z-index: -1;
   top: 4px;
-  right: 0;
+  left: 6px;
   font-size: 32px;
   background: red;
   color: var(--white-color);
   padding: 0 12px;
-  margin-right: 5px;
 }
 
 @keyframes spinner {

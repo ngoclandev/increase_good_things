@@ -45,8 +45,6 @@ Validator({
       unitTime,
     };
 
-    console.log(thing);
-
     notes.push(thing);
 
     setNotes(notes);
@@ -74,6 +72,8 @@ function displayFullUnitTime(unitTime) {
       return "mon";
     case "year":
       return "y";
+    case "session":
+      return "ses";
   }
 }
 
@@ -126,7 +126,7 @@ function generateMarkup(notes) {
                 <span class="things-desc">${note.title}</span>
                 </div>
                 <div class="things-maintain">
-                <button id="things-minus" class="btn things-btn">-</button>
+                <button class="btn things-btn things-minus">-</button>
                 <span class="things-time"
                     > <span class='things-number-time'>${
                       note.time
@@ -134,19 +134,19 @@ function generateMarkup(notes) {
         note.unitTime
       )}</span></span
                 >
-                <button id="things-increase" class="btn things-btn">+</button>
+                <button class="btn things-btn things-increase">+</button>
                 </div>
             </li>
 
-            <div class='things-item-delete'>&times;</div>
+            <span class='things-item-delete'>&times;</span>
         </div>
     `;
     })
     .join("");
 }
 
-function updateTime(note) {
-  $(".things-number-time").innerText = note.time;
+function updateTime(note, parent) {
+  parent.querySelector(".things-number-time").innerText = note.time;
 }
 
 function render(notes) {
@@ -158,6 +158,7 @@ function render(notes) {
     notesElement.innerHTML = markup;
   }, 1000);
   clearInputs();
+  titleInput.focus();
 }
 
 function deleteNote(idx) {
@@ -166,22 +167,22 @@ function deleteNote(idx) {
 }
 
 notesBigParent.onclick = (e) => {
-  const id = e.target.id;
+  const button = e.target.closest(".things-btn");
 
-  if (id !== "things-increase" && id !== "things-minus") return;
+  if (!button) return;
 
-  const parent = getParent($(`#${id}`), "things-item-container");
+  const parent = getParent(button, "things-item-container");
   const index = parent.dataset.index;
   const note = notes[index];
+  console.log(note);
 
-  console.log(parent);
-  if (id === "things-increase") {
+  if (button.className.includes("things-increase")) {
     note.time = note.time + Number(note.jump);
-  } else if (id === "things-minus") {
+  } else if (button.className.includes("things-minus")) {
     note.time = note.time - Number(note.jump);
   }
 
-  updateTime(note);
+  updateTime(note, getParent(button, "things-maintain"));
   setNotes(notes);
 };
 
@@ -190,8 +191,8 @@ let startX,
   moveX,
   movingX,
   noteItem,
-  threshold = -44,
-  maxThreshold = -60;
+  threshold = 44,
+  maxThreshold = 60;
 
 const changeMoving = (move) =>
   (noteItem.style.transform = `translateX(${move}px)`);
@@ -212,14 +213,14 @@ notesElement.addEventListener("touchmove", (e) => {
 
   changeMoving(movingX);
 
-  if (movingX < maxThreshold) changeMoving(maxThreshold);
-  if (movingX > -1) changeMoving(0);
+  if (movingX > maxThreshold) changeMoving(maxThreshold);
+  if (movingX < -1) changeMoving(0);
 });
 
 notesElement.addEventListener("touchend", () => {
   if (!noteItem) return;
 
-  if (moveX - startX < threshold) changeMoving(threshold);
+  if (moveX - startX > threshold) changeMoving(threshold);
 });
 
 notesElement.addEventListener("click", (e) => {
